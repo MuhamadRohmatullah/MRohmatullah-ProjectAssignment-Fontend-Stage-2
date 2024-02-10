@@ -1,7 +1,8 @@
 <template>
-    <h2>Semua Product</h2>
+    <navigasi :count="c" :crt="cls"/>
+    <h5 class="ms-3 mb-0 p-0">Semua Product</h5>
     <product :list="food" @emit-addChart="addToChart"/>
-    <chart :foodList="food" :numIndex="param"/>
+    <chart :foodList="food" @delete-emit="deleteIcon" :listChart="param"/>
 </template>
 <script>
 export default {
@@ -17,7 +18,7 @@ export default {
                 {
                     name: "Mie Gelas Rendang",
                     description: "Mie instant khusus anak kosan",
-                    stok: 3,
+                    stok: 20,
                     price: 1500
                 },
                 {
@@ -25,15 +26,27 @@ export default {
                     description: "kalau anak kosan jangan macam2 deh",
                     stok: 80,
                     price: 10000
+                },
+                {
+                    name: "Super Bubur",
+                    description: "sarapan cepat tanpa ribet",
+                    stok: 50,
+                    price: 2500
                 }
             ],
-            param : null
+            param : [ ],
+            c: null,
+            cls: 0
 
         }
     },
     methods:{
-        addToChart(index){
-            this.param = index
+        addToChart(index, p){
+            this.param.push(this.food[index])
+            this.c=p
+        },
+        deleteIcon(){
+            this.c-=1
         }
     }
 }
