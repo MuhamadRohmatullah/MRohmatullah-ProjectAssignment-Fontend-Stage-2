@@ -6,7 +6,6 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -26,6 +25,12 @@ app.component('product', ProductComponent);
 
 import ChartComponent from './components/ChartComponent.vue';
 app.component('chart', ChartComponent);
+
+import ChartIconComponent from './components/ChartIconComponent.vue';
+app.component('chart-icon', ChartIconComponent);
+
+import HeaderComponent from './components/HeaderComponent.vue';
+app.component('navigasi', HeaderComponent);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -43,5 +48,4 @@ app.component('chart', ChartComponent);
  * an "id" attribute of "app". This element is included with the "auth"
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
-
 app.mount('#app');
