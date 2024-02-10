@@ -43,12 +43,7 @@ export default({
             this.p+=1
             this.$emit('emit-addChart', index, this.p)
             this.list[index].stok-=1
-
-            
         },
-        test(index){
-            this.list[index].stok+=1
-        }
     }
 });
 </script>

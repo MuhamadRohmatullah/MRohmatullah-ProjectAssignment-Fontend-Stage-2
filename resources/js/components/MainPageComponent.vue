@@ -42,10 +42,16 @@ export default {
     },
     methods:{
         addToChart(index, p){
-            this.param.push(this.food[index])
+            let ps = {
+                id: index,
+                name: this.food[index].name,
+                stok: 1,
+                price: this.food[index].price
+            }
+            this.param.push(ps)
             this.c=p
         },
-        deleteIcon(){
+        deleteIcon(index){
             this.c-=1
         }
     }

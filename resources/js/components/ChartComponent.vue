@@ -46,7 +46,10 @@
         <button @click="reAdd()" type="button" class="btn-close me-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mt-0 p-0">
-        <table class="table table-hover mt-0 p-0">
+        <div v-if="listChart.length == 0" class="text-center pt-3">
+            <h3>No Product in Chart</h3>
+        </div>
+        <table v-else class="table table-hover mt-0 p-0">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -56,7 +59,7 @@
                 </tr>
             </thead>
             <tbody v-for="(elm, index) in listChart" :key="index">
-                <tr v-if="elm.stok != 0">
+                <tr v-if="functionFilter(elm)">
                     <td>{{ elm.name }}</td>
                     <td>{{ elm.stok }}</td>
                     <td>{{ elm.price }}</td>
@@ -112,8 +115,11 @@ export default({
              document.getElementById('ichart').setAttribute("data-bs-target","#offcanvasScrolling")
         },
         deleteAr(index, elm){
-            this.$emit('delete-emit')
+            this.$emit('delete-emit', index)
             elm.stok-=1
+        },
+        functionFilter(elm){
+            return true
         }
     }
 })
