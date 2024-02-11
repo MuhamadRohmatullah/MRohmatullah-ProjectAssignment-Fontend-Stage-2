@@ -8,7 +8,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Show a second modal and hide this one with the button below.
+           Rp. {{total}}
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
@@ -24,7 +24,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Hide this modal and show the first with the button below.
+           Belum tersedia fitur lanjutan
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
@@ -46,10 +46,7 @@
         <button @click="reAdd()" type="button" class="btn-close me-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mt-0 p-0">
-        <div v-if="listChart.length == 0" class="text-center pt-3">
-            <h3>No Product in Chart</h3>
-        </div>
-        <table v-else class="table table-hover mt-0 p-0">
+        <table class="table table-hover mt-0 p-0">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -58,12 +55,12 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody v-for="(elm, index) in listChart" :key="index">
-                <tr>
-                    <td>{{ foodList[elm].name }}</td>
-                    <td>{{ foodList[elm].stok }}</td>
-                    <td>{{ foodList[elm].price * foodList[elm].stok }}</td>
-                    <td><button class="btn btn-danger" @click="deleteAr(index, elm)">Delete</button></td>
+            <tbody>
+                <tr v-for="(list, index) in listChart" :key="index">
+                    <td>{{ list.name }}</td>
+                    <td>{{ s }}</td>
+                    <td>{{ functionPrice(list, s) }}</td>
+                    <td><button class="btn btn-danger" @click="deleteAr(index)">Delete</button></td>
                 </tr>
             </tbody>
             
@@ -72,7 +69,7 @@
     <div class="offcanvas-footer">
         <table class="table ms-2">
             <tr>
-                <td class="fw-bold">Total Rp.{{ }} </td>
+                <td class="fw-bold">Total Rp.{{ this.total }} </td>
                 <td class="text-end me-5 pe-5 pt-1">
                     <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Checkout</button>
                 </td>
@@ -101,6 +98,14 @@ export default({
             default:()=>{
                 return []
             }
+        },
+        numIndex :{
+            type:Number,
+            default: null
+        },
+        s:{
+            type:Number,
+            default: null
         }
     },
     data(){
@@ -115,8 +120,13 @@ export default({
             document.getElementById('ichart').setAttribute("data-bs-toggle","offcanvas")
              document.getElementById('ichart').setAttribute("data-bs-target","#offcanvasScrolling")
         },
-        deleteAr(index, elm){
+        deleteAr(index){
             this.$emit('delete-emit', index)
+            this.listChart.splice(index, 1)
+        },
+        functionPrice(list, s){
+            this.total = list.price*s
+            return this.total
         }
     },
     mounted(){
