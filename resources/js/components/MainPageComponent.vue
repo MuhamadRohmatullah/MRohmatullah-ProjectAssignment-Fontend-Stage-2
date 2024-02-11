@@ -42,10 +42,7 @@ export default {
     },
     methods:{
         addToChart(index, p){
-            let ps = this.param
-            ps.push(index)
-            ps.set()
-            this.param.push(ps)
+            this.param.push(index)
             this.c=p
         },
         deleteIcon(index){
