@@ -21439,7 +21439,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteAr: function deleteAr(index) {
       this.$emit('delete-emit', index);
-      this.listChart.splice(index, 1);
+      this.total = null;
     },
     functionPrice: function functionPrice(list, s) {
       this.total = list.price * s;
@@ -21582,18 +21582,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       c: null,
       cls: 0,
       chrt: "",
-      stk: 0
+      stk: 0,
+      ind: null
     };
   },
   methods: {
     addToChart: function addToChart(index, p) {
       this.param.push(this.food[index]);
       this.chrt = _toConsumableArray(new Set(this.param.map(JSON.stringify))).map(JSON.parse);
+      this.ind = index;
       this.stk += 1;
       this.c = p;
     },
     deleteIcon: function deleteIcon(index) {
       this.c -= 1;
+      this.stk -= 1;
+      this.food[index].stok += 1;
     }
   }
 });
@@ -21720,17 +21724,20 @@ var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Quantity"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
   scope: "col"
 }, "Price"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th")])], -1 /* HOISTED */);
-var _hoisted_16 = ["onClick"];
-var _hoisted_17 = {
+var _hoisted_16 = {
+  key: 0
+};
+var _hoisted_17 = ["onClick"];
+var _hoisted_18 = {
   "class": "offcanvas-footer"
 };
-var _hoisted_18 = {
+var _hoisted_19 = {
   "class": "table ms-2"
 };
-var _hoisted_19 = {
+var _hoisted_20 = {
   "class": "fw-bold"
 };
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
   "class": "text-end me-5 pe-5 pt-1"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-primary",
@@ -21749,16 +21756,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn-close me-2",
     "data-bs-dismiss": "offcanvas",
     "aria-label": "Close"
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.listChart, function (list, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_14, [_hoisted_15, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.listChart, function (list, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", {
       key: index
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(list.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.s), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.functionPrice(list, $props.s)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, [$props.s != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(list.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.s), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.functionPrice(list, $props.s)), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-danger",
       onClick: function onClick($event) {
         return $options.deleteAr(index);
       }
-    }, "Delete", 8 /* PROPS */, _hoisted_16)])]);
-  }), 128 /* KEYED_FRAGMENT */))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, "Total Rp." + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.total), 1 /* TEXT */), _hoisted_20])])])])], 64 /* STABLE_FRAGMENT */);
+    }, "Delete", 8 /* PROPS */, _hoisted_17)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_20, "Total Rp." + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.total), 1 /* TEXT */), _hoisted_21])])])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -21891,8 +21898,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     foodList: $data.food,
     onDeleteEmit: $options.deleteIcon,
     listChart: $data.chrt,
-    s: $data.stk
-  }, null, 8 /* PROPS */, ["foodList", "onDeleteEmit", "listChart", "s"])], 64 /* STABLE_FRAGMENT */);
+    s: $data.stk,
+    numIndex: $data.ind
+  }, null, 8 /* PROPS */, ["foodList", "onDeleteEmit", "listChart", "s", "numIndex"])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),

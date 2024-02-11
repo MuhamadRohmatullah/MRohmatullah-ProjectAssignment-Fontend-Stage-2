@@ -55,8 +55,8 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr v-for="(list, index) in listChart" :key="index">
+            <tbody v-for="(list, index) in listChart" :key="index">
+                <tr v-if="s != 0">
                     <td>{{ list.name }}</td>
                     <td>{{ s }}</td>
                     <td>{{ functionPrice(list, s) }}</td>
@@ -122,7 +122,7 @@ export default({
         },
         deleteAr(index){
             this.$emit('delete-emit', index)
-            this.listChart.splice(index, 1)
+            this.total = null
         },
         functionPrice(list, s){
             this.total = list.price*s
