@@ -44,6 +44,7 @@ export default({
         addChart(index, prod){
             this.p+=1
             this.$emit('emit-addChart', index, this.p)
+            prod.stok-=1
         },
     }
 });

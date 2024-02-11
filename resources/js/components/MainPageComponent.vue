@@ -2,7 +2,7 @@
     <navigasi :count="c" :crt="cls"/>
     <h5 class="ms-3 mb-0 p-0">Semua Product</h5>
     <product :list="food" @emit-addChart="addToChart"/>
-    <chart :foodList="food" @delete-emit="deleteIcon" :listChart="param"/>
+    <chart :foodList="food" @delete-emit="deleteIcon" :listChart="chrt" :s="stk" />
 </template>
 <script>
 export default {
@@ -34,15 +34,19 @@ export default {
                     price: 2500
                 }
             ],
-            param : [ ],
+            param : [],
             c: null,
-            cls: 0
+            cls: 0,
+            chrt: "",
+            stk: 0
 
         }
     },
     methods:{
         addToChart(index, p){
-            this.param.push(index)
+            this.param.push(this.food[index])
+            this.chrt = [...new Set(this.param.map(JSON.stringify))].map(JSON.parse);
+            this.stk += 1
             this.c=p
         },
         deleteIcon(index){
