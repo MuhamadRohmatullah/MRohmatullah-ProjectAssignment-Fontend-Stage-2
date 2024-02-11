@@ -59,10 +59,10 @@
                 </tr>
             </thead>
             <tbody v-for="(elm, index) in listChart" :key="index">
-                <tr v-if="functionFilter(elm)">
-                    <td>{{ elm.name }}</td>
-                    <td>{{ elm.stok }}</td>
-                    <td>{{ elm.price }}</td>
+                <tr>
+                    <td>{{ foodList[elm].name }}</td>
+                    <td>{{  }}</td>
+                    <td>{{  }}</td>
                     <td><button class="btn btn-danger" @click="deleteAr(index, elm)">Delete</button></td>
                 </tr>
             </tbody>
@@ -117,10 +117,11 @@ export default({
         deleteAr(index, elm){
             this.$emit('delete-emit', index)
             elm.stok-=1
-        },
-        functionFilter(elm){
-            return true
+            this.listChart.splice(index, 1)
         }
+    },
+    mounted(){
+    
     }
 })
 </script>

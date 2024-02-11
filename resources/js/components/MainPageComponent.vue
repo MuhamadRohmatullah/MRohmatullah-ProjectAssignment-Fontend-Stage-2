@@ -42,12 +42,9 @@ export default {
     },
     methods:{
         addToChart(index, p){
-            let ps = {
-                id: index,
-                name: this.food[index].name,
-                stok: 1,
-                price: this.food[index].price
-            }
+            let ps = this.param
+            ps.push(index)
+            ps.set()
             this.param.push(ps)
             this.c=p
         },
