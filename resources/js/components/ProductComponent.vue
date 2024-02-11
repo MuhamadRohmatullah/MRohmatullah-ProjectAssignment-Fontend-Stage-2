@@ -20,6 +20,7 @@
     </div>
  </div>
  </div>
+
 </template>
 <script>
 export default({
@@ -35,14 +36,14 @@ export default({
     data(){
         return{
             nom: null,
-            p: null
+            p: null,
+            chart: []
         }
     },
     methods:{
-        addChart(index){
+        addChart(index, prod){
             this.p+=1
             this.$emit('emit-addChart', index, this.p)
-            this.list[index].stok-=1
         },
     }
 });

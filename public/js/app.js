@@ -21420,7 +21420,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       c: 0,
-      cnth: 1
+      cnth: 1,
+      total: null
     };
   },
   methods: {
@@ -21430,8 +21431,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteAr: function deleteAr(index, elm) {
       this.$emit('delete-emit', index);
-      elm.stok -= 1;
-      this.listChart.splice(index, 1);
     }
   },
   mounted: function mounted() {}
@@ -21567,10 +21566,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addToChart: function addToChart(index, p) {
-      var ps = this.param;
-      ps.push(index);
-      ps.set();
-      this.param.push(ps);
+      this.param.push(index);
       this.c = p;
     },
     deleteIcon: function deleteIcon(index) {
@@ -21605,14 +21601,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       nom: null,
-      p: null
+      p: null,
+      chart: []
     };
   },
   methods: {
-    addChart: function addChart(index) {
+    addChart: function addChart(index, prod) {
       this.p += 1;
       this.$emit('emit-addChart', index, this.p);
-      this.list[index].stok -= 1;
     }
   }
 });
@@ -21705,7 +21701,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [$props.listChart.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [].concat(_hoisted_11))) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_12, [_hoisted_13, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.listChart, function (elm, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tbody", {
       key: index
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.foodList[elm].name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.foodList[elm].name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.foodList[elm].stok), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.foodList[elm].price * $props.foodList[elm].stok), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-danger",
       onClick: function onClick($event) {
         return $options.deleteAr(index, elm);
